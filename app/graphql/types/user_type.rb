@@ -8,5 +8,9 @@ module Types
     field :cards, [Types::CardType]
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    def cards
+        AssociationLoader.for(object.class, :cards).load(object)
+    end
   end
 end
